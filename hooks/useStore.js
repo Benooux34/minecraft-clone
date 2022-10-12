@@ -5,7 +5,7 @@ export const useStore = create((set) => ({
     texture: 'dirt',
     cubes: [{
         key: nanoid(),
-        pos: [10, 10, 10],
+        pos: [10, 0.5, 10],
         texture: 'dirt'
     }],
     addCube: (x, y, z) => {
@@ -22,5 +22,4 @@ export const useStore = create((set) => ({
     },
     removeCube: () => {},
     saveCube: () => {},
-    resetCube: () => {}
 }))

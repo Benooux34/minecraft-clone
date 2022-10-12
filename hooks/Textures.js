@@ -13,6 +13,12 @@ const grassTexture = useLoader(TextureLoader, imgGrass)
 const logTexture = useLoader(TextureLoader, imgLog)
 const woodTexture = useLoader(TextureLoader, imgWood)
 
+dirtTexture.magFilter = NearestFilter;
+glassTexture.magFilter = NearestFilter;
+grassTexture.magFilter = NearestFilter;
+logTexture.magFilter = NearestFilter;
+woodTexture.magFilter = NearestFilter;
+
 export {
 	dirtTexture,
 	logTexture,

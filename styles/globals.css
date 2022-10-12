@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    * {
+        font-family: 'Silkscreen', cursive;
+    }
+}
+
+@layer components {
+    .background {
+        background-image: url("/bg-menu.jpg");
+        background-repeat: no-repeat;
+    }
+}

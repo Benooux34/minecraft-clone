@@ -5,7 +5,8 @@ import { Vector3 } from "three"
 import { Keyboard } from "../hooks/Keyboard"
 
 const forceJump = 4
-const speed = 4
+const speed = 3
+const sprint = 5
 
 export const Player = () => {
     const actions = Keyboard()
@@ -25,7 +26,7 @@ export const Player = () => {
     }, [api.position, api.velocity])
 
     useFrame(() => {
-        camera.position.copy(new Vector3([pos.current[0]], [pos.current[1]], [pos.current[2]]))
+        camera.position.copy(new Vector3([pos.current[0]], [pos.current[1] + 0.7], [pos.current[2]]))
 
         const direction = new Vector3()
 
@@ -43,14 +44,19 @@ export const Player = () => {
         direction
             .subVectors(frontVector, sideVector)
             .normalize()
-            .multiplyScalar(speed)
             .applyEuler(camera.rotation)
+            if (frontVector && actions.Sprint) {
+                direction.multiplyScalar(sprint)
+            } else {
+                direction.multiplyScalar(speed)
+            }
 
         api.velocity.set(direction.x, vel.current[1], direction.z)
 
         if (actions.jump && Math.abs(vel.current[1]) < 0.01) {
             api.velocity.set(vel.current[0], forceJump, vel.current[2])
         }
+
     })
 
     return (
